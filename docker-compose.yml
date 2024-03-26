@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app:
+    image: php:8.3-fpm-alpine
+    restart: always
+    volumes:
+      - ./:/app
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    command: php artisan serve --host=0.0.0.0
+
+  vite:
+    image: node:20-alpine
+    restart: always
+    volumes:
+      - ./:/app
+    ports:
+      - "5173:5173"
+    working_dir: /app
+    command: npm run dev -- --host
